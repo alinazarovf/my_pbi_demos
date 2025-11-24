@@ -1,0 +1,135 @@
+table Product
+	lineageTag: 5083c503-6068-4a13-8386-366dabd8ad61
+
+	column ProductKey
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 30d2fe7f-ef79-46df-8649-4404f282c6d8
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Code'
+		dataType: string
+		lineageTag: cbe60d8f-9a15-41e4-b793-9658a1c1551d
+		summarizeBy: none
+		sourceColumn: Product Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: 46667175-fa83-469a-a8f1-dedc865c8a1a
+		summarizeBy: none
+		sourceColumn: Product Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manufacturer
+		dataType: string
+		lineageTag: 8e5f1d32-260e-4437-a565-027673467f50
+		summarizeBy: none
+		sourceColumn: Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 171c1f06-1f70-4a94-85bb-c73a139cc031
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: 43f9a517-66dd-420b-8908-2d9a488797fc
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weight Unit Measure'
+		dataType: string
+		lineageTag: 5d4fd01c-48b2-4beb-9193-e0635fee9868
+		summarizeBy: none
+		sourceColumn: Weight Unit Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weight
+		dataType: double
+		lineageTag: 501d7d1f-ba3e-4b0d-bc10-61bf4525e4b4
+		summarizeBy: none
+		sourceColumn: Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Unit Cost'
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 261a712f-b40c-4f39-98f2-f50c806d05f7
+		summarizeBy: none
+		sourceColumn: Unit Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-SE"}
+
+	column 'Unit Price'
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: b4ac819b-29a6-4550-9b0f-7d6719c2dae1
+		summarizeBy: none
+		sourceColumn: Unit Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-SE"}
+
+	column 'Subcategory Code'
+		dataType: string
+		lineageTag: 6a240706-bd63-4a56-8525-59c310ccef9a
+		summarizeBy: none
+		sourceColumn: Subcategory Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subcategory
+		dataType: string
+		lineageTag: 3a408ffe-8ccc-4214-8dfc-57457991bb51
+		summarizeBy: none
+		sourceColumn: Subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Code'
+		dataType: string
+		lineageTag: 6f24b5bd-550b-4ab3-83dc-c3c47db2f24e
+		summarizeBy: none
+		sourceColumn: Category Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 573328a7-9bbe-4467-899d-a9eaeaaf8378
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("localhost"),
+				    #"Contoso 10K" = Source{[Name="Contoso 10K"]}[Data],
+				    dbo_Product = #"Contoso 10K"{[Schema="dbo",Item="Product"]}[Data]
+				in
+				    dbo_Product
+

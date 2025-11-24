@@ -1,0 +1,121 @@
+table Customer
+	lineageTag: dc4da3fb-2afb-4787-b47a-95651a0bc746
+
+	column CustomerKey
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 14fa5251-e507-4bb4-b556-29d74d89ef71
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 49f952a4-24a1-4429-9012-c9a9e39779fa
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: d9503f0b-2556-4558-8d09-9c7764043cd6
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		lineageTag: df4e413a-13e0-4163-b17c-0e9ac607bc67
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 9095ef36-9bce-4aba-b476-7632175ed699
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'State Code'
+		dataType: string
+		lineageTag: e720d84d-86d9-4db3-8fe4-5c55adb27771
+		summarizeBy: none
+		sourceColumn: State Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 5dc463eb-4a29-4592-aaf9-1445ebae8c01
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Zip Code'
+		dataType: string
+		lineageTag: f913cae4-f5fd-4a51-927c-f24870c10b0c
+		summarizeBy: none
+		sourceColumn: Zip Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Code'
+		dataType: string
+		lineageTag: 7a7fc0de-00a9-4e20-ac5a-96673f2655f4
+		summarizeBy: none
+		sourceColumn: Country Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: f9b9a29a-0975-415d-af79-41d0d4f63d61
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Continent
+		dataType: string
+		lineageTag: f343b6be-0b71-4b80-bac9-9285b757a0f1
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Birthday
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a47f06aa-3685-41e2-ab23-4bb79014fc87
+		summarizeBy: none
+		sourceColumn: Birthday
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f48f281-34bf-40ae-997f-0d8c4f8a8e41
+		summarizeBy: none
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("localhost"),
+				    #"Contoso 10K" = Source{[Name="Contoso 10K"]}[Data],
+				    dbo_Customer = #"Contoso 10K"{[Schema="dbo",Item="Customer"]}[Data]
+				in
+				    dbo_Customer
+

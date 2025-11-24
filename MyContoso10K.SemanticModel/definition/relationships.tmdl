@@ -1,0 +1,12 @@
+relationship 30f8c25c-5ad8-6072-2a69-eb7e9eea4f1d
+	fromColumn: Sales.CustomerKey
+	toColumn: Customer.CustomerKey
+
+relationship dd9f81e2-b1bb-2106-0901-01d4da690f7e
+	fromColumn: Sales.ProductKey
+	toColumn: Product.ProductKey
+
+relationship 385664eb-4cf4-2ad3-1725-51d0bc158949
+	fromColumn: Sales.StoreKey
+	toColumn: Store.StoreKey
+

@@ -1,0 +1,95 @@
+table Store
+	lineageTag: 02998a8c-3cef-443b-82f3-c19e71711447
+
+	column StoreKey
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: e47df0e7-db01-4f77-b54f-ca3064cc6da2
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 41c58d7f-ecad-4884-9ed7-ce44292318de
+		summarizeBy: none
+		sourceColumn: Store Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 82942a5c-50f2-4e85-96de-d6348eb13091
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 284123f6-2630-4994-9c58-c55e706f5628
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: f0cbf932-6a5f-41f6-91b0-9f8172421d6e
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Square Meters'
+		dataType: int64
+		formatString: 0
+		lineageTag: 90765594-aded-4bb7-9ef0-33f6fee920b0
+		summarizeBy: none
+		sourceColumn: Square Meters
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Open Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: defe29ab-08dc-408d-983c-b24551658752
+		summarizeBy: none
+		sourceColumn: Open Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Close Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cb1a3571-c390-4349-a808-ebb3770a842d
+		summarizeBy: none
+		sourceColumn: Close Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Status
+		dataType: string
+		lineageTag: 90e78871-9ef4-475c-838d-6ccd3adbaa6d
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Store = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("localhost"),
+				    #"Contoso 10K" = Source{[Name="Contoso 10K"]}[Data],
+				    dbo_Store = #"Contoso 10K"{[Schema="dbo",Item="Store"]}[Data]
+				in
+				    dbo_Store
+
